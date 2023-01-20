@@ -18,12 +18,12 @@
     <ClInclude Include="include\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\CorneliusEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\CorneliusGameEngineFramwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

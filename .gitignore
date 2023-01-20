@@ -19,6 +19,7 @@
 **CorneliusGameEngineFramwork.obj
 **CorneliusGameEngineFramework.obj
 **pch.obj
+**_IsIncrementalBuild
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 **.userprefs
