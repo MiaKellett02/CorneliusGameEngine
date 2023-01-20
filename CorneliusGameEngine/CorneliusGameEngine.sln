@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CorneliusGameEngineSandbox", "CorneliusGameEngineSandbox\CorneliusGameEngineSandbox.vcxproj", "{2A2C9F01-369C-471B-B84C-70D554F8C811}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CorneliusGameEngineFramwork", "CorneliusGameEngineFramwork\CorneliusGameEngineFramwork.vcxproj", "{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2A2C9F01-369C-471B-B84C-70D554F8C811}.Release|x64.Build.0 = Release|x64
 		{2A2C9F01-369C-471B-B84C-70D554F8C811}.Release|x86.ActiveCfg = Release|Win32
 		{2A2C9F01-369C-471B-B84C-70D554F8C811}.Release|x86.Build.0 = Release|Win32
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Debug|x64.ActiveCfg = Debug|x64
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Debug|x64.Build.0 = Debug|x64
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Debug|x86.ActiveCfg = Debug|Win32
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Debug|x86.Build.0 = Debug|Win32
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Release|x64.ActiveCfg = Release|x64
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Release|x64.Build.0 = Release|x64
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Release|x86.ActiveCfg = Release|Win32
+		{BCF6DBA4-0388-419F-9A3F-DEF63EECF060}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

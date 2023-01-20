@@ -10,12 +10,15 @@
 **.userosscache
 **.sln.docstates
 
-#VS log files (Stuff I want to get rid of)
+#VS log files (Stuff I want to get rid of like intermediate files)
 **.1.tlog
 **.lastbuildstate
 **main.obj
-**vc143.idb
+**.idb
 **.recipe
+**CorneliusGameEngineFramwork.obj
+**CorneliusGameEngineFramework.obj
+**pch.obj
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 **.userprefs
