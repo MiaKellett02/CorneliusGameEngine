@@ -9,6 +9,15 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
  - Visual Studio 2022 has been used for development and compilation up to C++20 and C standard 17.
  - SDL2 is going to be used to load textures for it's wide variety of cross platform support and it's native support to work within C++.
 
+## Engine Structure
+### Engine Framework Project
+ - The engine framework project contains all the generic functionality that any game or simulation might require to be made.
+ - This project builds into a static library that allows any projects using the engine to access the function definitions of all project header files.
+
+### Engine Sandbox Project.
+ - This is an example project that uses the engine framework to create a game.
+ - This project builds into an executable that can be run on the platform it was built for.
+
 ## How to install/run/use this project.
 ### Installation and setup instructions.
  1. Clone the repository to your machine.
@@ -23,14 +32,6 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
 
 ### How to use this project.
 
-## Engine Structure
-### Engine Framework Project
- - The engine framework project contains all the generic functionality that any game or simulation might require to be made.
- - This project builds into a static library that allows any projects using the engine to access the function definitions of all project header files.
-
-### Engine Sandbox Project.
- - This is an example project that uses the engine framework to create a game.
- - This project builds into an executable that can be run on the platform it was built for.
 
 ## License and Credits.
 ### License
