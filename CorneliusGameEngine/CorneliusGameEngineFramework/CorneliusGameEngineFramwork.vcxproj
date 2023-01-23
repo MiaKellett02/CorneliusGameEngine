@@ -85,26 +85,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

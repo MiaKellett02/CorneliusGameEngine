@@ -71,32 +71,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <IncludePath>$(SolutionDir)CorneliusGameEngineFramework/include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
-    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration)/$(Platform);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <IncludePath>$(SolutionDir)CorneliusGameEngineFramework/include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
-    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration)/$(Platform);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <IncludePath>$(SolutionDir)CorneliusGameEngineFramework/include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
-    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration)/$(Platform);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)bin/$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)bin/$(Configuration)/intermediate</IntDir>
+    <OutDir>$(ProjectDir)bin/$(Configuration)/$(Platform)</OutDir>
+    <IntDir>$(ProjectDir)bin/$(Configuration)/$(Platform)/intermediate</IntDir>
     <IncludePath>$(SolutionDir)CorneliusGameEngineFramework/include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
-    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <LibraryPath>$(SolutionDir)CorneliusGameEngineFramework/bin/$(Configuration)/$(Platform);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
