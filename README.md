@@ -22,7 +22,15 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
  3. Run the generated Executable (You should at minimum be greeted by a console window with any messages that the engine has for you).
 
 ### How to use this project.
- 1. 
+
+## Engine Structure
+### Engine Framework Project
+ - The engine framework project contains all the generic functionality that any game or simulation might require to be made.
+ - This project builds into a static library that allows any projects using the engine to access the function definitions of all project header files.
+
+### Engine Sandbox Project.
+ - This is an example project that uses the engine framework to create a game.
+ - This project builds into an executable that can be run on the platform it was built for.
 
 ## License and Credits.
 ### License
