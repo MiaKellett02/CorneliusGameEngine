@@ -7,7 +7,7 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
 
 ### Technologies Used (List may expand as project is developed.):
  - Visual Studio 2022 has been used for development and compilation up to C++20 and C standard 17.
- - SDL was used to load textures for it's wide variety of cross platform support and it's native support to work within C++.
+ - SDL2 is going to be used to load textures for it's wide variety of cross platform support and it's native support to work within C++.
 
 ## How to install/run/use this project.
 ### Installation and setup instructions.
