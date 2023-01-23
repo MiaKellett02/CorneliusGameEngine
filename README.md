@@ -35,7 +35,6 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
 ## License and Credits.
 ### License
  - This project is under the GNU GPLv3 License.
- - 
 
 ### Credits
  - 
