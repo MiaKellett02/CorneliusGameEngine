@@ -11,7 +11,7 @@ A basic 2D game engine that will focus on creating a framework to make it as eas
 
 ## Engine Structure
 
-### Link to View Project Design Documentation
+### Design Documentation
 
 ### Engine Framework Project
  - The engine framework project contains all the generic functionality that any game or simulation might require to be made.
