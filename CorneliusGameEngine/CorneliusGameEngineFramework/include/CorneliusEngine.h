@@ -9,9 +9,11 @@
 
 namespace CorneliusEngine {
 	//precompiled header for external libraries.
-	#include "pch.h"
+#include "pch.h"
 
-	//Project includes.
-
+//Project includes.
+	namespace Core {
+#include "Application.h"
+	}
 }
 #endif // !_CORNELIUSENGINE_H_
