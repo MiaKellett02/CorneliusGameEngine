@@ -20,7 +20,7 @@ public:
 
 	//Main renderer Functions.
 	int Initialise(int a_screenWidth, int a_screenHeight, bool fullScreen);
-	void Render(std::vector<Entity*>& a_entitiesToRender);
+	void Render(const std::vector<Entity*>& a_entitiesToRender);
 	void Shutdown();
 
 	//Functions to handle multiple textures.

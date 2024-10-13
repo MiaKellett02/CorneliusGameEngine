@@ -36,7 +36,7 @@ void HealthComponent::DestroyIfDead()
 	//Check if it's dead.
 	if (m_currentHealth <= 0) {
 		//Death so destroy the attached entity.
-		Application::Instance().DestroyEntity(m_ownerEntity);
+		Application::Instance().GetActiveScene()->DestroyEntity(m_ownerEntity);
 	}
 }
 

@@ -55,7 +55,7 @@ int Renderer::Initialise(int a_screenWidth, int a_screenHeight, bool fullScreen)
 	return 0;
 }
 
-void Renderer::Render(std::vector<Entity*>& a_entitiesToRender)
+void Renderer::Render(const std::vector<Entity*>& a_entitiesToRender)
 {
 	//Clear the screen.
 	SDL_RenderClear(m_renderer);

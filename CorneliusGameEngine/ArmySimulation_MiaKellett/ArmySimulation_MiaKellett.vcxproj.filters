@@ -19,6 +19,12 @@
     <Filter Include="Source Files\AI_Source">
       <UniqueIdentifier>{6603448e-a533-4ffc-b935-05786bfcb4c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameScenesSource">
+      <UniqueIdentifier>{a208038b-f68e-4d0b-8023-3ca0ef740205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameScenesInclude">
+      <UniqueIdentifier>{0be1f81b-8731-4959-94f5-196543bebe36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +39,9 @@
     <ClCompile Include="source\DefenderAIBrainComponent.cpp">
       <Filter>Source Files\AI_Source</Filter>
     </ClCompile>
+    <ClCompile Include="include\ArmySimulationScene.cpp">
+      <Filter>Source Files\GameScenesSource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\HealthComponent.h">
@@ -43,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="include\DefenderAIBrainComponent.h">
       <Filter>Header Files\AI_Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ArmySimulationScene.h">
+      <Filter>Header Files\GameScenesInclude</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

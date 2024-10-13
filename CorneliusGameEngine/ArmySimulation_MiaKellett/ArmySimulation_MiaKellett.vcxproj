@@ -71,28 +71,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)External\SDL2\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)External\SDL2\include;$(SolutionDir)2D_Engine_Library\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\temp</IntDir>
+    <LibraryPath>$(SolutionDir)lib\$(Configuration)\$(Platform);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)External\SDL2\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)External\SDL2\include;$(SolutionDir)2D_Engine_Library\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\temp</IntDir>
+    <LibraryPath>$(SolutionDir)lib\$(Configuration)\$(Platform);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)External\SDL2\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)External\SDL2\include;$(SolutionDir)2D_Engine_Library\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\temp</IntDir>
+    <LibraryPath>$(SolutionDir)lib\$(Configuration)\$(Platform);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)External\SDL2\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)External\SDL2\include;$(SolutionDir)2D_Engine_Library\include;$(ProjectDir)include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <SourcePath>$(ProjectDir)source;$(VC_SourcePath);</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\temp</IntDir>
+    <LibraryPath>$(SolutionDir)lib\$(Configuration)\$(Platform);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,7 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>2D_Engine_Library.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>2D_Engine_Library.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,7 +147,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>2D_Engine_Library.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -163,16 +167,18 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\External\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>2D_Engine_Library.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\ArmySimulationScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\AttackerAIBrainComponent.cpp" />
     <ClCompile Include="source\DefenderAIBrainComponent.cpp" />
     <ClCompile Include="source\HealthComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ArmySimulationScene.h" />
     <ClInclude Include="include\AttackerAIBrainComponent.h" />
     <ClInclude Include="include\DefenderAIBrainComponent.h" />
     <ClInclude Include="include\HealthComponent.h" />

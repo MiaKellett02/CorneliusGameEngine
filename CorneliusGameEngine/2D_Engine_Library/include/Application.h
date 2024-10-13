@@ -6,7 +6,7 @@ class Entity;
 //Project includes.
 #include "Renderer.h"
 #include "Vector2.h"
-#include "HealthComponent.h"
+#include "Scene.h"
 
 //Library includes.
 #include <vector>
@@ -20,54 +20,33 @@ public:
 		return instance;
 	}
 
-	//Public functions.
-	int Initialise();
-	void Start();
-	void Run();
+	//Application handling functions.
+	int SetupApplication();
+	void RunApplication();
 	void Shutdown();
 
-	//Entity handling functions.
-	Entity* GetEntityByName(const std::string& a_name);
-	std::vector<Entity*> GetEntitiesWithTag(const std::string& a_tag);
-	void DestroyEntity(Entity* a_entityToDestroy);
-	void DestroyAllEntities();
-
-	Entity* GetRedBase() { return m_redBaseHealth->GetOwnerEntity(); }
-	Entity* GetBlueBase() { return m_blueBaseHealth->GetOwnerEntity(); }
+	//Scene Handling Functions.
+	void AddScene(Scene* a_newScene) { m_scenes.push_back(a_newScene); }
+	void LoadSceneByName(const std::string& a_sceneName);
+	void LoadSceneByIndex(const int& a_index);
+	Scene* GetActiveScene() { return m_activeScene; }
 
 	//Utility.
 	bool IsPositionOutOfBound(Vector2& a_pos);
+	Renderer& GetRenderer() { return m_renderer; }
 
 	//Consts.
-	const int SCREEN_WIDTH = 1600;
-	const int SCREEN_HEIGHT = 900;
-	const bool IS_FULLSCREEN = false;
-
-	//Enums.
-	enum WinConditions {
-		none,
-		RedWin,
-		BlueWin,
-		Draw
-	};
+	static const int SCREEN_WIDTH = 1600;
+	static const int SCREEN_HEIGHT = 900;
+	static const bool IS_FULLSCREEN = false;
 
 private:
-	//Essential game systems.
+	//Backend Engine systems.
 	Renderer m_renderer;
 
-	//Game entity variables.
-	std::vector<Entity*> m_gameEntities;
-
-
-	//Private Functions.
-	void ShuffleEntities();
-	
-	//Win conditions.
-	WinConditions CheckWinConditions();
-	WinConditions m_gameWonCondition = none;
-	HealthComponent* m_redBaseHealth;
-	HealthComponent* m_blueBaseHealth;
-	bool gameOver = false;
+	//Scene handling variables.
+	std::vector<Scene*> m_scenes;
+	Scene* m_activeScene = nullptr;
 
 	//Constructor and deconstructor.
 	Application();

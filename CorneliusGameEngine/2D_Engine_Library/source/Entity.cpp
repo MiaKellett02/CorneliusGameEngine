@@ -8,7 +8,7 @@
 #include <iostream>
 
 
-Entity::Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_name, std::string a_tag, std::string a_texFilepath, Renderer& a_renderer)
+Entity::Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_name, std::string a_tag, std::string a_texFilepath)
 {
 	//Populate entity variables.
 	m_parent = a_parent;
@@ -32,7 +32,7 @@ Entity::Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_na
 	m_screenPos.y = m_position.y - (m_size.y / 2);
 
 	//Ensure entity texture is created using entity tag rather than name.
-	a_renderer.CreateTexture(m_texID, a_texFilepath);
+	Application::Instance().GetRenderer().CreateTexture(m_texID, a_texFilepath);
 }
 
 Entity::~Entity()
@@ -48,7 +48,7 @@ Entity::~Entity()
 		Entity* childToDestroy = m_children[i];
 
 		//Get the application class to destroy the entity to handle ensuring it is removed correctly.
-		Application::Instance().DestroyEntity(childToDestroy);
+		Application::Instance().GetActiveScene()->DestroyEntity(childToDestroy);
 	}
 }
 

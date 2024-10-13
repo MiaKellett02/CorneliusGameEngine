@@ -13,7 +13,7 @@ class Component;
 class Entity {
 public:
 	//Constructor and destructor.
-	Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_name, std::string a_tag, std::string a_texFilepath, Renderer& a_renderer);
+	Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_name, std::string a_tag, std::string a_texFilepath);
 	~Entity();
 
 	//Main Entity functions.

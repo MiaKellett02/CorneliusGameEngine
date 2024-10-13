@@ -74,7 +74,7 @@ Vector2 DefenderAIBrainComponent::HandleDodgingAlliesMovement()
 	//Get a list of all allies that currently exist.
 	Vector2 alliesInRangeAveragePosition;
 	int alliesInRangeCount = 0;
-	std::vector<Entity*> allies = Application::Instance().GetEntitiesWithTag(m_teamTag);
+	std::vector<Entity*> allies = Application::Instance().GetActiveScene()->GetEntitiesWithTag(m_teamTag);
 	for (int i = 0; i < allies.size(); i++) {
 		Entity* ally = allies[i];
 		if (ally == m_ownerEntity) {
@@ -111,7 +111,7 @@ Vector2 DefenderAIBrainComponent::HandleDodgingAlliesMovement()
 Entity* DefenderAIBrainComponent::GetClosestEnemy()
 {
 	//Get all enemies that currently exist.
-	std::vector<Entity*> enemies = Application::Instance().GetEntitiesWithTag(m_enemyTag);
+	std::vector<Entity*> enemies = Application::Instance().GetActiveScene()->GetEntitiesWithTag(m_enemyTag);
 	if (enemies.size() <= 0) {
 		return nullptr;
 	}

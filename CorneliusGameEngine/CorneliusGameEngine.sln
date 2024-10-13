@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArmySimulation_MiaKellett", "ArmySimulation_MiaKellett\ArmySimulation_MiaKellett.vcxproj", "{60BCAEAC-956A-455E-BF58-09BC744A7F21}"
+	ProjectSection(ProjectDependencies) = postProject
+		{822F1C60-2266-41F9-B73F-273E2CDB4772} = {822F1C60-2266-41F9-B73F-273E2CDB4772}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2D_Engine_Library", "2D_Engine_Library\2D_Engine_Library.vcxproj", "{822F1C60-2266-41F9-B73F-273E2CDB4772}"
 EndProject
