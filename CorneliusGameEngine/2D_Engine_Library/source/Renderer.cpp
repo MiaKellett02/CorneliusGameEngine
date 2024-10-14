@@ -6,6 +6,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <assert.h>
 
 //Functions.
 Renderer::Renderer()

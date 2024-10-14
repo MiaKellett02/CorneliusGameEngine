@@ -19,7 +19,7 @@ Application::~Application()
 
 }
 
-int Application::SetupApplication()
+int Application::SetupApplication(int a_targetFPS)
 {
 	//Initialise any APIs here.
 	int rendererInitOuput = m_renderer.Initialise(SCREEN_WIDTH, SCREEN_HEIGHT, IS_FULLSCREEN);
@@ -29,6 +29,7 @@ int Application::SetupApplication()
 
 	//Setup application backend.
 	m_activeScene = nullptr; //On first load the active scene should always be nullptr.
+	m_targetFPS = a_targetFPS; //If no target is given for the application, fps will default to be as high as it can.
 
 	//Return exit code of successfull.
 	return 0;
@@ -44,7 +45,7 @@ void Application::RunApplication()
 
 	//Application loop.
 	Uint32 lastFrameTime = SDL_GetTicks();
-	double targetDeltaTime = 1.0 / TARGET_FPS;
+	double targetDeltaTime = 1.0 / m_targetFPS;
 
 	while (true) {
 		//Calculate time since last frame and convert to seconds.

@@ -9,7 +9,7 @@
 int main(int argc, char* argv)
 {
 	//Startup the application.
-	int applicationOutput = Application::Instance().SetupApplication();
+	int applicationOutput = Application::Instance().SetupApplication(60);
 	if (applicationOutput != 0) {
 		return applicationOutput;
 	}

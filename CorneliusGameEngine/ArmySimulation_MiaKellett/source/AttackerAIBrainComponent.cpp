@@ -19,13 +19,13 @@ void AttackerAIBrainComponent::Update(double a_deltaTime)
 	totalMovement = totalMovement + MoveTowardsClosestEnemy(closestEnemy);;
 
 	//If the movement would put the entity out of bounds, move them in the opposite direction.
-	Vector2 boundsTest = m_ownerEntity->GetPosition() + (totalMovement * (float)a_deltaTime);
-	if (Application::Instance().IsPositionOutOfBound(boundsTest)) {
-		//Out of bounds so weight movement to center.
-		Vector2 center = Vector2(Application::Instance().SCREEN_WIDTH / 2, Application::Instance().SCREEN_HEIGHT / 2);
-		Vector2 moveDir = (center - m_ownerEntity->GetPosition()) * m_seperationSpeed * 2;
-		totalMovement = totalMovement + moveDir;
-	}
+	//Vector2 boundsTest = m_ownerEntity->GetPosition() + (totalMovement * (float)a_deltaTime);
+	//if (Application::Instance().IsPositionOutOfBound(boundsTest)) {
+	//	//Out of bounds so weight movement to center.
+	//	Vector2 center = Vector2(Application::Instance().SCREEN_WIDTH / 2, Application::Instance().SCREEN_HEIGHT / 2);
+	//	Vector2 moveDir = (center - m_ownerEntity->GetPosition()) * m_seperationSpeed * 2;
+	//	totalMovement = totalMovement + moveDir;
+	//}
 
 
 	m_velocity = m_velocity + totalMovement;

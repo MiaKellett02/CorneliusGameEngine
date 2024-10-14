@@ -68,8 +68,8 @@ void Scene::DestroyEntity(Entity* a_entityToDestroy)
 	auto newEnd = std::remove(m_gameEntities.begin(), m_gameEntities.end(), a_entityToDestroy);
 	m_gameEntities.erase(newEnd, m_gameEntities.end());
 
-	//Destroy it.
-	std::cout << "Destroying entity: " << a_entityToDestroy->GetName() << std::endl;
+	//Free it's memory
+	//std::cout << "Destroying entity: " << a_entityToDestroy->GetName() << std::endl;
 	delete a_entityToDestroy;
 }
 

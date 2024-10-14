@@ -16,13 +16,13 @@ void ArmySimulationScene::SetupScene()
 	const int BASE_HEALTH = 3600;
 
 	const int DEFENDER_HEALTH = 1800;
-	const int DEFENDER_COUNT = 25;
+	//const int DEFENDER_COUNT = 25;
 	const int DEFENDER_MOVE_SPEED = 50.0f;
 	const int DEFENDER_DMG = 250;
 	const float DEFENDER_ATTACK_COOLDOWN = 1.0f;
 
 	const int ATTACKER_HEALTH = 1200;
-	const int ATTACKER_COUNT = 74;
+	const int ATTACKER_COUNT = 99;
 	const int ATTACKER_DMG = 400;
 	const float ATTACKER_ATTACK_COOLDOWN = 0.5f;
 	const float ATTACKER_MOVE_SPEED = 100.0f;
@@ -39,17 +39,17 @@ void ArmySimulationScene::SetupScene()
 	m_gameEntities.push_back(redBase);
 
 	//Create the red defender units.
-	for (int i = 0; i < DEFENDER_COUNT; i++) {
-		Entity* redDefenderUnit = new Entity(nullptr, Vector2(Application::SCREEN_WIDTH / 10, (Application::SCREEN_HEIGHT / DEFENDER_COUNT) * i)
-			, Vector2(Application::SCREEN_HEIGHT / 30, Application::SCREEN_HEIGHT / 30)
-			, "RedDefender(" + std::to_string(i) + ")", "RedTeam", "resources/RedDefender.png");
+	//for (int i = 0; i < DEFENDER_COUNT; i++) {
+	//	Entity* redDefenderUnit = new Entity(nullptr, Vector2(Application::SCREEN_WIDTH / 10, (Application::SCREEN_HEIGHT / DEFENDER_COUNT) * i)
+	//		, Vector2(Application::SCREEN_HEIGHT / 30, Application::SCREEN_HEIGHT / 30)
+	//		, "RedDefender(" + std::to_string(i) + ")", "RedTeam", "resources/RedDefender.png");
 
-		HealthComponent* redDefenderHealth = new HealthComponent(redDefenderUnit, DEFENDER_HEALTH);
-		redDefenderUnit->AddComponent(redDefenderHealth);
-		DefenderAIBrainComponent* redDefenderBrain = new DefenderAIBrainComponent(redDefenderUnit, "RedTeam", "BlueTeam", redDefenderHealth, DEFENDER_MOVE_SPEED, SEPERATION_SPEED, DEFENDER_DMG, DEFENDER_ATTACK_COOLDOWN, GetRedBase()->GetPosition());
-		redDefenderUnit->AddComponent(redDefenderBrain);
-		m_gameEntities.push_back(redDefenderUnit);
-	}
+	//	HealthComponent* redDefenderHealth = new HealthComponent(redDefenderUnit, DEFENDER_HEALTH);
+	//	redDefenderUnit->AddComponent(redDefenderHealth);
+	//	DefenderAIBrainComponent* redDefenderBrain = new DefenderAIBrainComponent(redDefenderUnit, "RedTeam", "BlueTeam", redDefenderHealth, DEFENDER_MOVE_SPEED, SEPERATION_SPEED, DEFENDER_DMG, DEFENDER_ATTACK_COOLDOWN, GetRedBase()->GetPosition());
+	//	redDefenderUnit->AddComponent(redDefenderBrain);
+	//	m_gameEntities.push_back(redDefenderUnit);
+	//}
 
 	//Create the red attacker units.
 	for (int i = 0; i < ATTACKER_COUNT; i++) {
@@ -79,17 +79,17 @@ void ArmySimulationScene::SetupScene()
 	m_gameEntities.push_back(blueBase);
 
 	//Create the blue defender units.
-	for (int i = 0; i < DEFENDER_COUNT; i++) {
-		Entity* blueDefenderUnit = new Entity(nullptr, Vector2(Application::SCREEN_WIDTH - Application::SCREEN_WIDTH / 10, (Application::SCREEN_HEIGHT / 25) * i)
-			, Vector2(Application::SCREEN_HEIGHT / 30, Application::SCREEN_HEIGHT / 30)
-			, "BlueDefender(" + std::to_string(i) + ")", "BlueTeam", "resources/BlueDefender.png");
+	//for (int i = 0; i < DEFENDER_COUNT; i++) {
+	//	Entity* blueDefenderUnit = new Entity(nullptr, Vector2(Application::SCREEN_WIDTH - Application::SCREEN_WIDTH / 10, (Application::SCREEN_HEIGHT / 25) * i)
+	//		, Vector2(Application::SCREEN_HEIGHT / 30, Application::SCREEN_HEIGHT / 30)
+	//		, "BlueDefender(" + std::to_string(i) + ")", "BlueTeam", "resources/BlueDefender.png");
 
-		HealthComponent* blueDefenderHealth = new HealthComponent(blueDefenderUnit, DEFENDER_HEALTH);
-		blueDefenderUnit->AddComponent(blueDefenderHealth);
-		DefenderAIBrainComponent* blueDefenderBrain = new DefenderAIBrainComponent(blueDefenderUnit, "BlueTeam", "RedTeam", blueDefenderHealth, DEFENDER_MOVE_SPEED, SEPERATION_SPEED, DEFENDER_DMG, DEFENDER_ATTACK_COOLDOWN, GetBlueBase()->GetPosition());
-		blueDefenderUnit->AddComponent(blueDefenderBrain);
-		m_gameEntities.push_back(blueDefenderUnit);
-	}
+	//	HealthComponent* blueDefenderHealth = new HealthComponent(blueDefenderUnit, DEFENDER_HEALTH);
+	//	blueDefenderUnit->AddComponent(blueDefenderHealth);
+	//	DefenderAIBrainComponent* blueDefenderBrain = new DefenderAIBrainComponent(blueDefenderUnit, "BlueTeam", "RedTeam", blueDefenderHealth, DEFENDER_MOVE_SPEED, SEPERATION_SPEED, DEFENDER_DMG, DEFENDER_ATTACK_COOLDOWN, GetBlueBase()->GetPosition());
+	//	blueDefenderUnit->AddComponent(blueDefenderBrain);
+	//	m_gameEntities.push_back(blueDefenderUnit);
+	//}
 
 	//Create the blue attacker units.
 	for (int i = 0; i < ATTACKER_COUNT; i++) {
