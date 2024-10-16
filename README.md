@@ -39,7 +39,7 @@ https://docs.google.com/document/d/1ms8ovwWcb1dTRgAjilfISpnSTy8yPO_m2SWJwLhE6II/
 
 ## License and Credits.
 ### License
- - This project is under the GNU GPLv3 License.
+ - This project is under the MIT License.
 
 ### Credits
  - 
