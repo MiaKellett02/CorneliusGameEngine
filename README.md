@@ -10,30 +10,29 @@ All external libraries used are included in a dedicate "ExternalDependencies" fo
  - Visual Studio 2022 has been used for development and compilation up to C++20 and C standard 17.
  - SDL2 is going to be used to load textures for it's wide variety of cross platform support and it's native compatibility to work within C++.
 
-## Engine Structure
-
 ### Design Documentation
 https://docs.google.com/document/d/1ms8ovwWcb1dTRgAjilfISpnSTy8yPO_m2SWJwLhE6II/edit?usp=sharing
 
-### Engine Framework Project
+## Visual Studio Projects contained within this repository.
+### 2D_Engine_Library Project
  - The engine framework project contains all the generic functionality that any game or simulation might require to be made.
  - This project builds into a static library that allows any projects using the engine to access the function definitions of all project header files.
 
-### Engine Sandbox Project.
- - This is an example project that uses the engine framework to create a game.
- - This project builds into an executable that can be run on the platform it was built for.
+### ArmySimulation_MiaKellett
+ - This is an example project that uses the engine framework to create a basic army simulation of 2 different armies that battle to try and destroy the other side.
+ - If creating your own simulation/game using the engine, look at this project to see how you can use the engine.
 
 ## How to install/run/use this project.
 ### Installation and setup instructions.
  1. Clone the repository to your machine.
  2. Open the Visual Studio 2022 Solution Named "CorneliusGameEngine.sln".
- 3. Set the "CorneliusGameEngineSandbox" project as the startup project.
+ 3. Set the "ArmySimulation_MiaKellett" project as the startup project.
  4. Ensure the "CorneluisGameEngineFramework" project is set as a dependency of the sandbox project. (This project builds the engine library that the sandbox relies on.)
 
 ### How to run the project.
- 1. Build the "CorneliusGameEngine" Solution (Both projects will place the output files within the "bin" subfolder of each project and then separated further into their configuration and platform).
- 2. Go to the Sandbox project's directory, open the binary folder and locate the generated executable.
- 3. Run the generated Executable (You should at minimum be greeted by a console window with any messages that the engine has for you).
+ 1. Build the "CorneliusGameEngine" Solution. The engine will compile into a static library (.lib) file you can find in the solution directory's 'lib' followed by configuration and platform subdirectory. The example executable project will compile into the solution' directory of 'bin' followed by the configuration and platform once again.
+ 3. Go to the Solution directory, open the binary folder and locate the generated executable.
+ 4. Run the generated Executable (You should at minimum be greeted by a console window with any messages that the engine has for you).
 
 ### How to use this project.
 
