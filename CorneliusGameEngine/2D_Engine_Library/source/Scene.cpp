@@ -6,6 +6,7 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <assert.h>
 
 //Function definitions.
 Scene::Scene(std::string a_sceneName)
@@ -18,8 +19,18 @@ Scene::~Scene()
 
 }
 
+void Scene::SetupScene()
+{
+	m_sceneShutdown = false;
+	assert(m_gameEntities.size() == 0);
+}
+
 void Scene::UpdateScene(double a_deltaTime)
 {
+	assert(!m_sceneShutdown);
+	if (m_sceneShutdown) {
+		std::cout << "SCENE IS SHUTDOWN SO SHOULD NOT BE UPDATING.";
+	}
 	for (int i = 0; i < m_gameEntities.size(); i++) {
 		Entity* currentEntity = m_gameEntities[i];
 		currentEntity->Update(a_deltaTime);
@@ -30,6 +41,7 @@ void Scene::ShutdownScene()
 {
 	//destroy all entities in the scene.
 	DestroyAllEntities();
+	m_sceneShutdown = true;
 }
 
 Entity* Scene::GetEntityByName(const std::string& a_name)
@@ -75,6 +87,7 @@ void Scene::DestroyEntity(Entity* a_entityToDestroy)
 
 void Scene::DestroyAllEntities()
 {
+	assert(!m_sceneShutdown);
 	//Destroy all entities untill there is nothing left.
 	while (m_gameEntities.size() > 0) {
 		DestroyEntity(m_gameEntities[0]);

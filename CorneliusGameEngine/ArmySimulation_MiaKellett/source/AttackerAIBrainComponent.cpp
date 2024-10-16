@@ -1,8 +1,11 @@
 #include "AttackerAIBrainComponent.h"
 #include "Application.h"
 
+#include <iostream>
+
 AttackerAIBrainComponent::~AttackerAIBrainComponent()
 {
+
 }
 
 void AttackerAIBrainComponent::Update(double a_deltaTime)

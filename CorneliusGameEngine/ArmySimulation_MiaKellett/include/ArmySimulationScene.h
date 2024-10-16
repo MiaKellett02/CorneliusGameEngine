@@ -34,6 +34,7 @@ private:
 	WinConditions CheckWinConditions();
 	WinConditions m_gameWonCondition = none;
 	bool gameOver = false;
+	float m_gameOverTimer = 0;
 
 	HealthComponent* m_redBaseHealth;
 	HealthComponent* m_blueBaseHealth;

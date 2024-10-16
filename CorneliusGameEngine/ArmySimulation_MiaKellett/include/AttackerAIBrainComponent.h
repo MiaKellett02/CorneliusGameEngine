@@ -6,6 +6,7 @@
 
 //Library includes.
 #include <string>
+#include <iostream>
 
 //Forward declarations.
 
@@ -50,6 +51,6 @@ private:
 	Vector2 HandleDodgingAlliesMovement();
 	Vector2 HandleDodgingEnemies();
 	Vector2 MoveTowardsClosestEnemy(Entity* a_enemy);
-	
+
 	Entity* GetClosestEnemy();
 };

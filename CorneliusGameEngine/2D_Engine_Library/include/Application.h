@@ -23,6 +23,7 @@ public:
 	//Application handling functions.
 	int SetupApplication(int a_targetFPS = 100000000);
 	void RunApplication();
+	void QuitApplication() { m_hasQuit = true; }
 	void Shutdown();
 
 	//Scene Handling Functions.
@@ -36,9 +37,9 @@ public:
 	Renderer& GetRenderer() { return m_renderer; }
 
 	//Consts.
-	static const int SCREEN_WIDTH = 1920;
-	static const int SCREEN_HEIGHT = 1080;
-	static const bool IS_FULLSCREEN = true;
+	static const int SCREEN_WIDTH = 1280;
+	static const int SCREEN_HEIGHT = 720;
+	static const bool IS_FULLSCREEN = false;
 
 private:
 	//Backend Engine systems.
@@ -54,4 +55,5 @@ private:
 
 	//Consts.
 	int m_targetFPS = 100000000;
+	bool m_hasQuit = false;
 };

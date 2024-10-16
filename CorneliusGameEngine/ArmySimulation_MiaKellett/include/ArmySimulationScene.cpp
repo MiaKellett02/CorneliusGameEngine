@@ -12,6 +12,8 @@ ArmySimulationScene::~ArmySimulationScene()
 
 void ArmySimulationScene::SetupScene()
 {
+	Scene::SetupScene();
+	
 	//Ensure any setup for the actual game is done here.
 	const int BASE_HEALTH = 3600;
 
@@ -152,6 +154,15 @@ void ArmySimulationScene::UpdateScene(double a_deltaTime)
 			}
 		}
 	}
+	else if (gameOver) {
+		//Run the game over timer.
+		m_gameOverTimer += (float)a_deltaTime;
+		const float GAME_OVER_TIMER_MAX = 5.0f; // 5 seconds till the game quits.
+		if (m_gameOverTimer >= GAME_OVER_TIMER_MAX) {
+			//Application::Instance().QuitApplication();
+			Application::Instance().LoadSceneByIndex(0);
+		}
+	}
 }
 
 void ArmySimulationScene::ShutdownScene()
@@ -160,6 +171,9 @@ void ArmySimulationScene::ShutdownScene()
 	Scene::ShutdownScene();
 
 	//The game Base entities will get cleaned up by the "DestroyAllEntites" function in the base class definition.
+	m_gameWonCondition = none;
+	gameOver = false;
+	m_gameOverTimer = 0;
 }
 
 ArmySimulationScene::WinConditions ArmySimulationScene::CheckWinConditions()

@@ -18,7 +18,7 @@ public:
 	~Scene();
 
 	//Standard Scene Functions.
-	virtual void SetupScene() = 0;
+	virtual void SetupScene();
 	virtual void UpdateScene(double a_deltaTime);
 	virtual void ShutdownScene();
 
@@ -35,6 +35,7 @@ public:
 protected:
 	//Private/class inherited variables.
 	std::string m_sceneName;
+	bool m_sceneShutdown = false;
 
 	//Game entity variables.
 	std::vector<Entity*> m_gameEntities;

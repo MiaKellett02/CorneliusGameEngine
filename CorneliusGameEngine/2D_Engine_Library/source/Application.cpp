@@ -47,7 +47,7 @@ void Application::RunApplication()
 	Uint32 lastFrameTime = SDL_GetTicks();
 	double targetDeltaTime = 1.0 / m_targetFPS;
 
-	while (true) {
+	while (!m_hasQuit) {
 		//Calculate time since last frame and convert to seconds.
 		Uint32 currentFrameTime = SDL_GetTicks();
 		Uint32 elapsedTime = currentFrameTime - lastFrameTime;
