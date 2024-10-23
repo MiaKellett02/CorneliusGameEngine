@@ -32,7 +32,7 @@ Entity::Entity(Entity* a_parent, Vector2 a_pos, Vector2 a_size, std::string a_na
 	m_screenPos.y = m_position.y - (m_size.y / 2);
 
 	//Ensure entity texture is created using entity tag rather than name.
-	Application::Instance().GetRenderer().CreateTexture(m_texID, a_texFilepath);
+	Application::Instance()->GetRenderer().CreateTexture(m_texID, a_texFilepath);
 }
 
 Entity::~Entity()
@@ -48,7 +48,7 @@ Entity::~Entity()
 		Entity* childToDestroy = m_children[i];
 
 		//Get the application class to destroy the entity to handle ensuring it is removed correctly.
-		Application::Instance().GetActiveScene()->DestroyEntity(childToDestroy);
+		Application::Instance()->GetActiveScene()->DestroyEntity(childToDestroy);
 	}
 }
 
@@ -63,7 +63,7 @@ void Entity::Update(double a_deltaTime)
 void Entity::SetPosition(Vector2 a_newPos)
 {
 	//Bounds check.
-	//if (Application::Instance().IsPositionOutOfBound(a_newPos)) {
+	//if (Application::Instance()->IsPositionOutOfBound(a_newPos)) {
 	//	//std::cout << m_name << " tried to move to a position is out of bounds." << std::endl;
 	//	return; //Don't update position as it is out of bounds.
 	//}

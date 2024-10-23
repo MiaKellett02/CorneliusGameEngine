@@ -15,16 +15,22 @@ class Application {
 public:
 	//Singleton class as Application needs to be globally accessible
 	//	so that entities can interact with other entities.
-	static Application& Instance() {
-		static Application instance;
+	static Application* Instance() {
 		return instance;
 	}
 
+	//Constructor and deconstructor.
+	Application()
+	{
+		instance = this;
+		SetupApplication(60);
+	};
+	~Application() { Shutdown(); };
+
+
 	//Application handling functions.
-	int SetupApplication(int a_targetFPS = 100000000);
 	void RunApplication();
 	void QuitApplication() { m_hasQuit = true; }
-	void Shutdown();
 
 	//Scene Handling Functions.
 	void AddScene(Scene* a_newScene) { m_scenes.push_back(a_newScene); }
@@ -37,11 +43,15 @@ public:
 	Renderer& GetRenderer() { return m_renderer; }
 
 	//Consts.
-	static const int SCREEN_WIDTH = 1280;
-	static const int SCREEN_HEIGHT = 720;
-	static const bool IS_FULLSCREEN = false;
+	static const int SCREEN_WIDTH = 1920;
+	static const int SCREEN_HEIGHT = 1080;
+	static const bool IS_FULLSCREEN = true;
 
 private:
+	//singleton instance.
+	static Application* instance;
+
+
 	//Backend Engine systems.
 	Renderer m_renderer;
 
@@ -49,9 +59,9 @@ private:
 	std::vector<Scene*> m_scenes;
 	Scene* m_activeScene = nullptr;
 
-	//Constructor and deconstructor.
-	Application();
-	~Application();
+	//Functions.
+	int SetupApplication(int a_targetFPS = 100000000);
+	void Shutdown();
 
 	//Consts.
 	int m_targetFPS = 100000000;

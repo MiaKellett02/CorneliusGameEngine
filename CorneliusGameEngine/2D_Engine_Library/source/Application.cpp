@@ -7,20 +7,17 @@
 #include <iostream>
 #include <SDL.h>
 #include <assert.h>
+#include <thread>
+#include <chrono>
+
+// Static member initialization.
+Application* Application::instance = nullptr;
 
 //Functions.
-
-Application::Application()
-{
-}
-
-Application::~Application()
-{
-
-}
-
 int Application::SetupApplication(int a_targetFPS)
 {
+	std::cout << "Application setup called." << std::endl;
+
 	//Initialise any APIs here.
 	int rendererInitOuput = m_renderer.Initialise(SCREEN_WIDTH, SCREEN_HEIGHT, IS_FULLSCREEN);
 	if (rendererInitOuput != 0) {
@@ -54,10 +51,10 @@ void Application::RunApplication()
 		double deltaTime = elapsedTime / 1000.0;
 
 		//If the frametime hasn't reached the target.
-		if (deltaTime <= targetDeltaTime) {
-			//Don't update.
-			continue;
-		}
+		//if (deltaTime <= targetDeltaTime) {
+		//	//Don't update.
+		//	continue;
+		//}
 
 		//std::cout << "fps: " << ((int)(1 / deltaTime)) << std::endl;
 
@@ -80,6 +77,9 @@ void Application::RunApplication()
 
 		//Cache current frame time.
 		lastFrameTime = currentFrameTime;
+
+		//Sleep till target deltatime reached.
+		std::this_thread::sleep_for(std::chrono::milliseconds(((int)(targetDeltaTime * 1000))));
 	}
 }
 

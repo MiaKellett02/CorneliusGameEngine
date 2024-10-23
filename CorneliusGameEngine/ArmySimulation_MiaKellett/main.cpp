@@ -9,21 +9,14 @@
 int main(int argc, char* argv)
 {
 	//Startup the application.
-	int applicationOutput = Application::Instance().SetupApplication(60);
-	if (applicationOutput != 0) {
-		return applicationOutput;
-	}
+	Application app;
 
-	//Create the desired scenes.
-	ArmySimulationScene* armyScene = new ArmySimulationScene("ArmyScene");
+	//Create the desired scenes and run the program..
+	ArmySimulationScene armyScene("ArmyScene");
+	app.AddScene(&armyScene);
 
-	//Add them to the application.
-	Application::Instance().AddScene(armyScene);
-
-	//Program running.
-	Application::Instance().RunApplication();
+	app.RunApplication();
 
 	//Application end.
-	Application::Instance().Shutdown();
 	return 0;
 }

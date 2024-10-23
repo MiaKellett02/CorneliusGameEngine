@@ -25,9 +25,9 @@ void DefenderAIBrainComponent::Update(double a_deltaTime)
 
 	//If the movement would put the entity out of bounds, move them in the opposite direction.
 	Vector2 boundsTest = m_ownerEntity->GetPosition() + (totalMovement * (float)a_deltaTime);
-	if (Application::Instance().IsPositionOutOfBound(boundsTest)) {
+	if (Application::Instance()->IsPositionOutOfBound(boundsTest)) {
 		//Out of bounds so weight movement to center.
-		Vector2 center = Vector2(Application::Instance().SCREEN_WIDTH / 2, Application::Instance().SCREEN_HEIGHT / 2);
+		Vector2 center = Vector2(Application::Instance()->SCREEN_WIDTH / 2, Application::Instance()->SCREEN_HEIGHT / 2);
 		Vector2 moveDir = (center - m_ownerEntity->GetPosition()) * m_seperationSpeed * 2;
 		totalMovement = totalMovement + moveDir;
 	}
@@ -74,7 +74,7 @@ Vector2 DefenderAIBrainComponent::HandleDodgingAlliesMovement()
 	//Get a list of all allies that currently exist.
 	Vector2 alliesInRangeAveragePosition;
 	int alliesInRangeCount = 0;
-	std::vector<Entity*> allies = Application::Instance().GetActiveScene()->GetEntitiesWithTag(m_teamTag);
+	std::vector<Entity*> allies = Application::Instance()->GetActiveScene()->GetEntitiesWithTag(m_teamTag);
 	for (int i = 0; i < allies.size(); i++) {
 		Entity* ally = allies[i];
 		if (ally == m_ownerEntity) {
@@ -111,7 +111,7 @@ Vector2 DefenderAIBrainComponent::HandleDodgingAlliesMovement()
 Entity* DefenderAIBrainComponent::GetClosestEnemy()
 {
 	//Get all enemies that currently exist.
-	std::vector<Entity*> enemies = Application::Instance().GetActiveScene()->GetEntitiesWithTag(m_enemyTag);
+	std::vector<Entity*> enemies = Application::Instance()->GetActiveScene()->GetEntitiesWithTag(m_enemyTag);
 	if (enemies.size() <= 0) {
 		return nullptr;
 	}
