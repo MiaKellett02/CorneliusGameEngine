@@ -1,6 +1,7 @@
 //Project includes.
 #include "Renderer.h"
 #include "Entity.h"
+#include "Logging.h"
 
 //Library includes
 #include <iostream>
@@ -22,12 +23,12 @@ Renderer::~Renderer()
 int Renderer::Initialise(int a_screenWidth, int a_screenHeight, bool fullScreen)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
-		std::cout << "Unable to initialize SDL: " << SDL_GetError() << std::endl;
+		CorneliusEngine::LogError("Unable to initialize SDL: " + std::string(SDL_GetError()));
 		return 1;
 	}
 
 	if (IMG_Init(IMG_INIT_PNG) == 0) {
-		std::cout << "Unable to initialise SDL2_image." << std::endl;
+		CorneliusEngine::LogError("Unable to initialise SDL2_image.");
 		return 2;
 	}
 
@@ -41,18 +42,18 @@ int Renderer::Initialise(int a_screenWidth, int a_screenHeight, bool fullScreen)
 
 	//Ensure the window was correctly initialised.
 	if (m_window == NULL) {
-		std::cout << "Unable to initialise program window." << std::endl;
+		CorneliusEngine::LogError("Unable to initialise program window.");
 		return 3;
 	}
 
 	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_renderer == NULL) {
-		std::cout << "Unable to initialise renderer." << std::endl;
+		CorneliusEngine::LogError("Unable to initialise renderer.");
 		return 4;
 	}
 
 	//If we get here then the renderer has been initialised successfully.
-	std::cout << "SDL has been initialised." << std::endl;
+	CorneliusEngine::Log("SDL has been initialised.");
 	return 0;
 }
 
@@ -85,7 +86,7 @@ void Renderer::Render(const std::vector<Entity*>& a_entitiesToRender)
 
 void Renderer::Shutdown()
 {
-	std::cout << "Shutting down renderer." << std::endl;
+	CorneliusEngine::Log("Shutting down renderer.");
 	//Destroy all textures in the map.
 	for (auto& texturePair : m_textureMap) {
 		SDL_Texture* texture = texturePair.second;
@@ -109,20 +110,20 @@ void Renderer::CreateTexture(std::string a_textureID, std::string a_filepath)
 	//Load the image..
 	SDL_Surface* imgSurface = IMG_Load(a_filepath.c_str());
 	if (imgSurface == NULL) {
-		std::cout << "Unable to load image: " << IMG_GetError() << std::endl;
+		CorneliusEngine::LogError("Unable to load image: " + std::string(IMG_GetError()));
 		return;
 	}
 
 	//Create the texture.
 	SDL_Texture* imgTexture = SDL_CreateTextureFromSurface(m_renderer, imgSurface);
 	if (imgTexture == NULL) {
-		std::cout << "Unable to create texture.";
+		CorneliusEngine::LogError("Unable to create texture.");
 		return;
 	}
 
 	//Add it to the map.
 	m_textureMap[a_textureID] = imgTexture;
-	std::cout << "Added " << a_textureID << " to the texture map." << std::endl;
+	CorneliusEngine::Log("Loading texture: " + a_textureID);
 
 	//Free the surface memory as it is no longer needed.
 	SDL_FreeSurface(imgSurface);

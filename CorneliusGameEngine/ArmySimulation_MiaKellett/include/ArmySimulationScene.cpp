@@ -24,7 +24,7 @@ void ArmySimulationScene::SetupScene()
 	const float DEFENDER_ATTACK_COOLDOWN = 1.0f;
 
 	const int ATTACKER_HEALTH = 1200;
-	const int ATTACKER_COUNT = 1000;
+	const int ATTACKER_COUNT = 99;
 	const int ATTACKER_DMG = 400;
 	const float ATTACKER_ATTACK_COOLDOWN = 0.5f;
 	const float ATTACKER_MOVE_SPEED = 100.0f;

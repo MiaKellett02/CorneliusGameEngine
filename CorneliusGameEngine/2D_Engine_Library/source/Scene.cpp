@@ -1,6 +1,7 @@
 //Project includes.
 #include "Scene.h"
 #include "Entity.h"
+#include "Logging.h"
 
 //Library includes.
 #include <iostream>
@@ -29,7 +30,7 @@ void Scene::UpdateScene(double a_deltaTime)
 {
 	assert(!m_sceneShutdown);
 	if (m_sceneShutdown) {
-		std::cout << "SCENE IS SHUTDOWN SO SHOULD NOT BE UPDATING.";
+		CorneliusEngine::LogError("SCENE IS SHUTDOWN SO SHOULD NOT BE UPDATING.");
 	}
 	for (int i = 0; i < m_gameEntities.size(); i++) {
 		Entity* currentEntity = m_gameEntities[i];
@@ -53,7 +54,7 @@ Entity* Scene::GetEntityByName(const std::string& a_name)
 	}
 
 	//No entity matched.
-	std::cout << "No entity of name " << a_name << " was found." << std::endl;
+	CorneliusEngine::LogWarning("No entity was found of name: " + a_name);
 	return nullptr;
 }
 

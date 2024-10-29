@@ -1,7 +1,7 @@
 //Project includes.
 #include "Application.h"
 #include "Entity.h"
-
+#include "Logging.h"
 
 //Library includes.
 #include <iostream>
@@ -16,7 +16,7 @@ Application* Application::instance = nullptr;
 //Functions.
 int Application::SetupApplication(int a_targetFPS)
 {
-	std::cout << "Application setup called." << std::endl;
+	CorneliusEngine::Log("Application setup called.");
 
 	//Initialise any APIs here.
 	int rendererInitOuput = m_renderer.Initialise(SCREEN_WIDTH, SCREEN_HEIGHT, IS_FULLSCREEN);
@@ -86,10 +86,10 @@ void Application::RunApplication()
 void Application::Shutdown()
 {
 	m_renderer.Shutdown();
-	std::cout << "Shutting down SDL." << std::endl;
+	CorneliusEngine::Log("Shutting down SDL.");
 	SDL_Quit();
 
-	std::cout << "Application has finished shutting down." << std::endl;
+	CorneliusEngine::Log("Application has finished shutting down.");
 }
 
 void Application::LoadSceneByName(const std::string& a_sceneName)
@@ -115,7 +115,7 @@ void Application::LoadSceneByName(const std::string& a_sceneName)
 		}
 	}
 
-	std::cout << "Could not find scene to load of name " << a_sceneName << "." << std::endl;
+	CorneliusEngine::Log((("Could not find scene to load of name " + a_sceneName) + "."));
 }
 
 void Application::LoadSceneByIndex(const int& a_index)

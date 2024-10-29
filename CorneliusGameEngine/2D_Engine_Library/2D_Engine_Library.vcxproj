@@ -192,6 +192,7 @@
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\Logging.h" />
     <ClInclude Include="include\Renderer.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Vector2.h" />
