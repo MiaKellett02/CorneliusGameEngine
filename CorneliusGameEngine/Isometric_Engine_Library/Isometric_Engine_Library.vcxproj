@@ -192,6 +192,7 @@
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Entity.h" />
+    <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\IsometricTilemap.h" />
     <ClInclude Include="include\Logging.h" />
     <ClInclude Include="include\Renderer.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\Component.cpp" />
     <ClCompile Include="source\Entity.cpp" />
+    <ClCompile Include="source\InputHandler.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
     <ClCompile Include="source\Scene.cpp" />
   </ItemGroup>

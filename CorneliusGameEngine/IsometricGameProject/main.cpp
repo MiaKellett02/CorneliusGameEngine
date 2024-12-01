@@ -8,14 +8,14 @@
 int main(int argc, char* argv)
 {
 	//Startup the application.
-	Application app("Isometric Game Test", 1600, 900, false);
+	Application app("Isometric Game Test", 1920, 1080, true);
 
 	//Move the camera by half the screen width.
-	Vector2Int cameraPos = Vector2Int(400, 50);
+	Vector2Int cameraPos = Vector2Int(app.SCREEN_WIDTH / 4, app.SCREEN_HEIGHT / 16);
 	app.GetRenderer().SetCameraOffset(cameraPos);
 
 	//Create the desired scenes and run the program..
-	Scene armyScene("ArmyScene", 15, 15, "resources/IsometricTileTest.png");
+	Scene armyScene("ArmyScene", 100, 100, "resources/IsometricTileTest.png");
 	app.AddScene(&armyScene);
 
 	app.RunApplication();

@@ -34,6 +34,7 @@ public:
 
 	//Camera handling functions.
 	void SetCameraOffset(Vector2Int& a_newPos) { m_cameraOffset = a_newPos; }
+	void MoveCamera(Vector2Int& a_moveAmount) { m_cameraOffset = m_cameraOffset + a_moveAmount; }
 
 	//Renderer Utility Functions
 	Vector2Int GetScreenPosFromIsometricCoords(const Vector2& a_isometricCoordinate);
