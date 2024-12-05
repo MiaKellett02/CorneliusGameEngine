@@ -22,45 +22,64 @@ Renderer::~Renderer()
 
 }
 
-int Renderer::Initialise(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool fullScreen)
+Vector2Int Renderer::Initialise(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool fullScreen, bool a_runAtMonitorResolution)
 {
-	//Setup normal renderer variables.
-	m_isometricTileSize = Vector2Int(a_screenHeight / 10, a_screenHeight / 10);
+	int desiredWidth = a_screenWidth;
+	int desiredHeight = a_screenHeight;
 
 	//Setup SDL.
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
 		CorneliusEngine::LogError("Unable to initialize SDL: " + std::string(SDL_GetError()));
-		return 1;
+		return Vector2Int(-1, -1);
 	}
 
+	SDL_DisplayMode displayMode;
+	if (SDL_GetCurrentDisplayMode(0, &displayMode) != 0) {
+		std::cerr << "Failed to get display mode: " << SDL_GetError() << std::endl; SDL_Quit();
+		CorneliusEngine::LogError("Unable to get display mode: " + std::string(SDL_GetError()));
+		return Vector2Int(-1, -1);
+	}
+
+	//Setup normal renderer variables.
+	if (a_runAtMonitorResolution) {
+		desiredWidth = displayMode.w;
+		desiredHeight = displayMode.h;
+		CorneliusEngine::Log("Screen dimensions (from renderer init): (" + std::to_string(desiredWidth) + "," + std::to_string(desiredHeight) + ")");
+	}
+	m_isometricTileSize = Vector2Int(desiredHeight / 10, desiredHeight / 10);
+
+	//Initialise image handling library.
 	if (IMG_Init(IMG_INIT_PNG) == 0) {
 		CorneliusEngine::LogError("Unable to initialise SDL2_image.");
-		return 2;
+		return Vector2Int(-1, -1);
 	}
 
 	//Create the window.
 	if (fullScreen) {
-		m_window = SDL_CreateWindow(a_appName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, a_screenWidth, a_screenHeight, SDL_WINDOW_FULLSCREEN);
+		m_window = SDL_CreateWindow(a_appName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, desiredWidth, desiredHeight, SDL_WINDOW_FULLSCREEN);
 	}
 	else {
-		m_window = SDL_CreateWindow(a_appName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, a_screenWidth, a_screenHeight, SDL_WINDOW_OPENGL);
+		m_window = SDL_CreateWindow(a_appName.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, desiredWidth, desiredHeight, SDL_WINDOW_OPENGL);
 	}
 
 	//Ensure the window was correctly initialised.
 	if (m_window == NULL) {
 		CorneliusEngine::LogError("Unable to initialise program window.");
-		return 3;
+		return Vector2Int(-1, -1);
 	}
 
 	m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED);
 	if (m_renderer == NULL) {
 		CorneliusEngine::LogError("Unable to initialise renderer.");
-		return 4;
+		return Vector2Int(-1, -1);
 	}
 
 	//If we get here then the renderer has been initialised successfully.
 	CorneliusEngine::Log("SDL has been initialised.");
-	return 0;
+
+
+	//Return the screen dimensions to update the application.
+	return Vector2Int(desiredWidth, desiredHeight);
 }
 
 void Renderer::ClearScreen()

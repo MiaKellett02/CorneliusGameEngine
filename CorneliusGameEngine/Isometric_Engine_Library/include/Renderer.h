@@ -23,7 +23,7 @@ public:
 	~Renderer();
 
 	//Main renderer Functions.
-	int Initialise(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool fullScreen);
+	Vector2Int Initialise(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool fullScreen, bool a_runAtMonitorResolution);
 	void ClearScreen();
 	void Render(const std::vector<Entity*>& a_entitiesToRender);
 	void RenderTilemap(IsometricTilemap& a_tilemapToRender);

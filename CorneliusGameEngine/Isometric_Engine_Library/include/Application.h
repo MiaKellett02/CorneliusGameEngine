@@ -22,14 +22,25 @@ public:
 	}
 
 	//Constructor and deconstructor.
-	Application(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool a_isFullScreen)
+	Application(const std::string& a_appName, int a_defaultScreenWidth, int a_defaultScreenHeight, bool a_isFullScreen, bool a_runAtMonitorResolution)
 	{
+		//Ensure there is an instance set for the class.
+		//We assign the instance in the constructor so initialisation is kept explicit and not lazy.
 		instance = this;
 
-		SCREEN_WIDTH = a_screenWidth;
-		SCREEN_HEIGHT = a_screenHeight;
+		a_runAtMonitorResolution = a_runAtMonitorResolution && a_isFullScreen;  // Only will run at the monitor resolution if fullscreen.
+																			    // Otherwise, run at default resolutions passed in.
+																			    // We still have a separate variable for running at monitor resolution
+																			    //	as it allows flexibility for running fullscreen at lower resolutions
+																				//	for performance related purposes.
+
+		// Will be overwritten by monitor width&height, 
+		// inside the renderer initialisation if "a_runAtMonitorResolution" is true.
+		SCREEN_WIDTH = a_defaultScreenWidth;
+		SCREEN_HEIGHT = a_defaultScreenHeight;
+
 		IS_FULLSCREEN = a_isFullScreen;
-		SetupApplication(a_appName);
+		SetupApplication(a_appName, a_runAtMonitorResolution);
 	};
 	~Application() { Shutdown(); };
 
@@ -65,7 +76,7 @@ private:
 	Scene* m_activeScene = nullptr;
 
 	//Functions.
-	int SetupApplication(const std::string& a_appName);
+	void SetupApplication(const std::string& a_appName, bool a_runAtMonitorResolution);
 	void Shutdown();
 
 	//Consts.

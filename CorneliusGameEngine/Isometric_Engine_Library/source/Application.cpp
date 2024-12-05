@@ -15,22 +15,23 @@
 Application* Application::instance = nullptr;
 
 //Functions.
-int Application::SetupApplication(const std::string& a_appName)
+void Application::SetupApplication(const std::string& a_appName, bool a_runAtMonitorResolution)
 {
 	CorneliusEngine::Log("Application setup called.");
 
 	//Initialise any APIs here.
-	int rendererInitOuput = m_renderer.Initialise(a_appName, SCREEN_WIDTH, SCREEN_HEIGHT, IS_FULLSCREEN);
-	if (rendererInitOuput != 0) {
-		return rendererInitOuput;
-	}
+	Vector2Int rendererInitOuput = m_renderer.Initialise(a_appName, SCREEN_WIDTH, SCREEN_HEIGHT, IS_FULLSCREEN, a_runAtMonitorResolution);
 
 	//Setup application backend.
+	SCREEN_WIDTH = rendererInitOuput.x;
+	SCREEN_HEIGHT = rendererInitOuput.y;
+	CorneliusEngine::Log("Screen dimensions: (" + std::to_string(SCREEN_WIDTH) + "," + std::to_string(SCREEN_HEIGHT) + ")");
+
 	m_activeScene = nullptr; //On first load the active scene should always be nullptr.
 	m_targetFPS = m_renderer.GetMonitorRefreshRate(); //Target FPS should be VSYNC
 
 	//Return exit code of successfull.
-	return 0;
+	return;
 }
 
 void Application::RunApplication()
@@ -61,41 +62,42 @@ void Application::RunApplication()
 
 		//Poll any events.
 		SDL_Event event;
-		if (SDL_PollEvent(&event)) {
+		while (SDL_PollEvent(&event)) {
 			bool quitButtonPressed = (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE);
 			if (event.type == SDL_QUIT || quitButtonPressed) {
+				m_hasQuit = true;
 				break;
 			}
 
-			if (event.type == SDL_KEYDOWN) {
+			//if (event.type == SDL_KEYDOWN) {
 				Vector2Int totalMovement = Vector2Int(0,0);
 				if (event.key.keysym.sym == SDLK_a) {
-					CorneliusEngine::Log("A key pressed");
+					//CorneliusEngine::Log("A key pressed");
 					//Move the camera left.
 					Vector2Int leftMovement = Vector2Int(10, 0);
 					totalMovement = totalMovement + leftMovement;
 				}
 				if (event.key.keysym.sym == SDLK_d) {
-					CorneliusEngine::Log("D key pressed");
+					//CorneliusEngine::Log("D key pressed");
 					//Move the camera right.
 					Vector2Int rightMovement = Vector2Int(-10, 0);
 					totalMovement = totalMovement + rightMovement;
 				}
 				if (event.key.keysym.sym == SDLK_w) {
-					CorneliusEngine::Log("W key pressed");
+					//CorneliusEngine::Log("W key pressed");
 					//Move the camera up.
 					Vector2Int upMovement = Vector2Int(0, 10);
 					totalMovement = totalMovement + upMovement;
 				}
 				if (event.key.keysym.sym == SDLK_s) {
-					CorneliusEngine::Log("S key pressed");
+					//CorneliusEngine::Log("S key pressed");
 					//Move the camera down.
 					Vector2Int downMovement = Vector2Int(0, -10);
 					totalMovement = totalMovement + downMovement;
 				}
 
 				m_renderer.MoveCamera(totalMovement);
-			}
+			//}
 		}
 
 		//Update the game.
