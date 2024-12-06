@@ -118,6 +118,7 @@ void Renderer::RenderTilemap(IsometricTilemap& a_tilemapToRender)
 	const std::vector<int>& tilesToRender = a_tilemapToRender.GetTilemapList();
 	const int WIDTH = a_tilemapToRender.GetWidth();
 	const int HEIGHT = a_tilemapToRender.GetHeight();
+	const int AREA = WIDTH * HEIGHT;
 
 	//Render.
 	for (int y = 0; y < HEIGHT; y++) {
@@ -131,7 +132,11 @@ void Renderer::RenderTilemap(IsometricTilemap& a_tilemapToRender)
 			renderRect.h = m_isometricTileSize.y;
 
 			//Get the texture.
-			int textureIndex = tilesToRender[a_tilemapToRender.GetWidth() * x + y];
+			int tileAccessIndex = x + y * WIDTH;
+			if (tileAccessIndex < 0 || tileAccessIndex >= AREA) {
+				CorneliusEngine::LogError("Tile access index is out of bounds on tilemap (inside renderer.cpp 'RenderTilemap').");
+			}
+			int textureIndex = tilesToRender[tileAccessIndex];
 			const std::string& tileTextureID = a_tilemapToRender.GetTileTextureFromIndex(textureIndex);
 			SDL_Texture* tileTexture = m_textureMap[tileTextureID];
 
