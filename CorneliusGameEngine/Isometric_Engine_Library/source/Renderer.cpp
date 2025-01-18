@@ -112,12 +112,13 @@ void Renderer::Render(const std::vector<Entity*>& a_entitiesToRender)
 	SDL_RenderPresent(m_renderer);
 }
 
-void Renderer::RenderTilemap(IsometricTilemap& a_tilemapToRender)
+void Renderer::RenderTilemap(IsometricTilemap* a_tilemapToRender)
 {
 	//Setup variables.
-	const std::vector<int>& tilesToRender = a_tilemapToRender.GetTilemapList();
-	const int WIDTH = a_tilemapToRender.GetWidth();
-	const int HEIGHT = a_tilemapToRender.GetHeight();
+	using Tile = IsometricTilemap::Tile;
+	const std::vector<Tile>& tilesToRender = a_tilemapToRender->GetTilemapList();
+	const int WIDTH = a_tilemapToRender->GetWidth();
+	const int HEIGHT = a_tilemapToRender->GetHeight();
 	const int AREA = WIDTH * HEIGHT;
 
 	//Render.
@@ -136,9 +137,17 @@ void Renderer::RenderTilemap(IsometricTilemap& a_tilemapToRender)
 			if (tileAccessIndex < 0 || tileAccessIndex >= AREA) {
 				CorneliusEngine::LogError("Tile access index is out of bounds on tilemap (inside renderer.cpp 'RenderTilemap').");
 			}
-			int textureIndex = tilesToRender[tileAccessIndex];
-			const std::string& tileTextureID = a_tilemapToRender.GetTileTextureFromIndex(textureIndex);
+
+			//Access the current tile.
+			int textureIndex = tilesToRender[tileAccessIndex].textureID;
+			const std::string& tileTextureID = a_tilemapToRender->GetTileTextureFromIndex(textureIndex);
 			SDL_Texture* tileTexture = m_textureMap[tileTextureID];
+
+			//Tint the tile to be the correct colour.
+			Uint8 r = tilesToRender[tileAccessIndex].tint.r;
+			Uint8 g = tilesToRender[tileAccessIndex].tint.g;
+			Uint8 b = tilesToRender[tileAccessIndex].tint.b;
+			SDL_SetTextureColorMod(tileTexture, r, g, b);
 
 			//Render the tile.
 			SDL_RenderCopy(m_renderer, tileTexture, NULL, &renderRect);

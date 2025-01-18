@@ -16,7 +16,7 @@ Scene::Scene(std::string a_sceneName, int a_tileMapWidth, int a_tileMapHeight, c
 	m_sceneName = a_sceneName;
 	
 	m_sceneTiles = IsometricTilemap(a_tileMapWidth, a_tileMapHeight);
-	m_sceneTiles.AddTile(a_defaultTile, Application::Instance()->GetRenderer());
+	m_sceneTiles.AddNewTileSprite(a_defaultTile, Application::Instance()->GetRenderer());
 }
 
 Scene::~Scene()

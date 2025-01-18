@@ -6,7 +6,6 @@ class SDL_Renderer;
 class SDL_Surface;
 class SDL_Texture;
 class Entity;
-class IsometricTilemap;
 
 //Library includes.
 #include <vector>
@@ -26,7 +25,7 @@ public:
 	Vector2Int Initialise(const std::string& a_appName, int a_screenWidth, int a_screenHeight, bool fullScreen, bool a_runAtMonitorResolution);
 	void ClearScreen();
 	void Render(const std::vector<Entity*>& a_entitiesToRender);
-	void RenderTilemap(IsometricTilemap& a_tilemapToRender);
+	//void RenderTilemap(IsometricTilemap* a_tilemapToRender);
 	void Shutdown();
 
 	//Functions to handle multiple textures.
