@@ -190,6 +190,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\Colour.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\InputHandler.h" />

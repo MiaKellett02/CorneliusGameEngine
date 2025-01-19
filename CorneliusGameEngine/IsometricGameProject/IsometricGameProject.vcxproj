@@ -172,6 +172,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\GameGrid.cpp" />
+    <ClCompile Include="source\IsometricUnitMovementTestScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\GameGrid.h" />
+    <ClInclude Include="include\IsometricUnitMovementTestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,6 +3,7 @@
 
 //Project includes.
 #include "Application.h"
+#include "IsometricUnitMovementTestScene.h"
 
 //Functions.
 int main(int argc, char* argv)
@@ -15,8 +16,9 @@ int main(int argc, char* argv)
 	app.GetRenderer().SetCameraOffset(cameraPos);
 
 	//Create the desired scenes and run the program..
-	Scene armyScene("ArmyScene", 100, 100, "resources/IsoFlatTile.png");
-	app.AddScene(&armyScene);
+	//Scene testScene("ArmyScene");
+	IsometricUnitMovementTestScene testScene("IsoTestScene", 8, 8, "resources/IsoFlatTile.png");
+	app.AddScene(&testScene);
 
 	app.RunApplication();
 
