@@ -220,6 +220,63 @@ Vector2Int Renderer::GetScreenPosFromIsometricCoords(const Vector2& a_isometricC
 	return Vector2Int(screenX, screenY);
 }
 
+Vector2Int Renderer::GetIsometricGridPosFromScreenCoords(const Vector2& a_screenCoords) 
+{ 
+	// Extract the tile size 
+	const int tileWidth = m_isometricTileSize.x / 2; 
+	const int tileHeight = m_isometricTileSize.y / 2; 
+	
+	// Remove camera offset 
+	int screenX = a_screenCoords.x - (m_cameraOffset.x * 2 );
+	int screenY = a_screenCoords.y - (m_cameraOffset.y ); 
+	
+	// Add tileWidth to screenX to reverse the subtraction in the original function 
+	screenX += tileWidth;
+	screenY -= (tileHeight * 2);
+	
+	// Calculate isometric coordinates 
+	int isoX = (screenX / tileWidth + 2 * screenY / tileHeight) / 2; 
+	int isoY = (2 * screenY / tileHeight - screenX / tileWidth) / 2; 
+	
+	return Vector2Int(isoX, isoY);
+
+	//VERSION 2
+
+	//const int tileWidth = m_isometricTileSize.x / 2; 
+	//const int tileHeight = m_isometricTileSize.y / 2; 
+	//
+
+	////Apply camera offset.
+	//int screenX = a_screenCoords.GetX() - m_cameraOffset.GetX();
+	//int screenY = a_screenCoords.GetY() - m_cameraOffset.GetY();
+
+	//int x = (screenX / tileWidth + screenY / tileHeight) / 2;
+	//int y = (screenY / tileHeight - (screenX / tileWidth)) / 2;
+	//
+	//return Vector2Int(x, y); 
+
+	//VERSION 1
+
+	//// Extract the tile size
+	//const int tileWidth = m_isometricTileSize.x / 2;
+	//const int tileHeight = m_isometricTileSize.y / 2;
+
+	////Calculate the isometric X and Y coordinate.
+	//int isoY = (int)((screenX / 0.5f) / tileHeight) - (int)((screenY / 0.5f) / tileHeight);
+	//int isoX = 0 + tileWidth;
+	//isoX = isoX + ((int)((screenX / tileWidth)) - (int)((screenY / (-1)) / tileWidth));
+
+
+	//return Vector2Int(isoX, isoY);
+}
+
+Vector2Int Renderer::GetMousePosition()
+{
+	int x, y;
+	Uint32 buttons = SDL_GetMouseState(&x, &y);
+	return Vector2Int(x, y);
+}
+
 int Renderer::GetMonitorRefreshRate()
 {
 	SDL_DisplayMode displayMode;

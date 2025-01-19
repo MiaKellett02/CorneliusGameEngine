@@ -33,11 +33,19 @@ public:
 	void CreateTexture(std::string a_textureID, std::string a_filepath);
 
 	//Camera handling functions.
-	void SetCameraOffset(Vector2Int& a_newPos) { m_cameraOffset = a_newPos; }
-	void MoveCamera(Vector2Int& a_moveAmount) { m_cameraOffset = m_cameraOffset + a_moveAmount; }
+	void SetCameraOffset(Vector2Int& a_newPos) {
+		m_cameraOffset = a_newPos;
+		//m_cameraOffset = Vector2Int(0, 0);
+	}
+	void MoveCamera(Vector2Int& a_moveAmount) {
+		m_cameraOffset = m_cameraOffset + a_moveAmount;
+		//m_cameraOffset = Vector2Int(0, 0);
+	}
 
 	//Renderer Utility Functions
 	Vector2Int GetScreenPosFromIsometricCoords(const Vector2& a_isometricCoordinate);
+	Vector2Int GetIsometricGridPosFromScreenCoords(const Vector2& a_screenCoords);
+	Vector2Int GetMousePosition();
 	int GetMonitorRefreshRate();
 
 private:
