@@ -15,9 +15,10 @@ void IsometricUnitMovementTestScene::UpdateScene(double a_deltaTime)
 {
 	//Get the position of the mouse and use that to get the isometric coordinate it is hovering over..
 	Vector2Int mousePos = Application::Instance()->GetRenderer().GetMousePosition();
-	Vector2 mousePosFloat = Vector2(mousePos.x, mousePos.y);
-	Vector2Int mouseIsoPos = Application::Instance()->GetRenderer().GetIsometricGridPosFromScreenCoords(mousePosFloat);
-	//CorneliusEngine::Log(("MouseCoords = (" + std::to_string(mouseIsoPos.x) + ", " + std::to_string(mouseIsoPos.y) + ")"));
+	Vector2Int mouseIsoPos = Application::Instance()->GetRenderer().GetIsometricGridPosFromScreenCoords(mousePos, true);
+	/*CorneliusEngine::Log(("IsoPos(" + std::to_string(mouseIsoPos.x) + ", " + std::to_string(mouseIsoPos.y) + ")") +
+						 (" MousePos(" + std::to_string(mousePos.x) + ", " + std::to_string(mousePos.y) + ")") +
+		                 (" CamOffset(" + std::to_string(Application::Instance()->GetRenderer().GetCameraOffset().x) + ", " + std::to_string(Application::Instance()->GetRenderer().GetCameraOffset().y) + ")"));*/
 
 
 	//Brighten the highlighted tile and make the others dark.

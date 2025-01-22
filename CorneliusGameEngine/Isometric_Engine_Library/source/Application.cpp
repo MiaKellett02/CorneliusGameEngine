@@ -69,35 +69,35 @@ void Application::RunApplication()
 				break;
 			}
 
-			//if (event.type == SDL_KEYDOWN) {
-			Vector2Int totalMovement = Vector2Int(0, 0);
-			if (event.key.keysym.sym == SDLK_a) {
-				//CorneliusEngine::Log("A key pressed");
-				//Move the camera left.
-				Vector2Int leftMovement = Vector2Int(10, 0);
-				totalMovement = totalMovement + leftMovement;
-			}
-			if (event.key.keysym.sym == SDLK_d) {
-				//CorneliusEngine::Log("D key pressed");
-				//Move the camera right.
-				Vector2Int rightMovement = Vector2Int(-10, 0);
-				totalMovement = totalMovement + rightMovement;
-			}
-			if (event.key.keysym.sym == SDLK_w) {
-				//CorneliusEngine::Log("W key pressed");
-				//Move the camera up.
-				Vector2Int upMovement = Vector2Int(0, 10);
-				totalMovement = totalMovement + upMovement;
-			}
-			if (event.key.keysym.sym == SDLK_s) {
-				//CorneliusEngine::Log("S key pressed");
-				//Move the camera down.
-				Vector2Int downMovement = Vector2Int(0, -10);
-				totalMovement = totalMovement + downMovement;
-			}
+			if (event.type == SDL_KEYDOWN) {
+				Vector2Int totalMovement = Vector2Int(0, 0);
+				if (event.key.keysym.sym == SDLK_a) {
+					//CorneliusEngine::Log("A key pressed");
+					//Move the camera left.
+					Vector2Int leftMovement = Vector2Int(10, 0);
+					totalMovement = totalMovement + leftMovement;
+				}
+				if (event.key.keysym.sym == SDLK_d) {
+					//CorneliusEngine::Log("D key pressed");
+					//Move the camera right.
+					Vector2Int rightMovement = Vector2Int(-10, 0);
+					totalMovement = totalMovement + rightMovement;
+				}
+				if (event.key.keysym.sym == SDLK_w) {
+					//CorneliusEngine::Log("W key pressed");
+					//Move the camera up.
+					Vector2Int upMovement = Vector2Int(0, 10);
+					totalMovement = totalMovement + upMovement;
+				}
+				if (event.key.keysym.sym == SDLK_s) {
+					//CorneliusEngine::Log("S key pressed");
+					//Move the camera down.
+					Vector2Int downMovement = Vector2Int(0, -10);
+					totalMovement = totalMovement + downMovement;
+				}
 
-			m_renderer.MoveCamera(totalMovement);
-			//}
+				m_renderer.MoveCamera(totalMovement);
+			}
 		}
 
 		//Update the game.

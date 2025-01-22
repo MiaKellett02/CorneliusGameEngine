@@ -43,8 +43,9 @@ public:
 	}
 
 	//Renderer Utility Functions
-	Vector2Int GetScreenPosFromIsometricCoords(const Vector2& a_isometricCoordinate);
-	Vector2Int GetIsometricGridPosFromScreenCoords(const Vector2& a_screenCoords);
+	Vector2Int GetScreenPosFromIsometricCoords(const Vector2Int& a_isometricCoordinate);
+	Vector2Int GetIsometricGridPosFromScreenCoords(const Vector2Int& a_screenCoords, bool a_useCamOffset);
+	Vector2Int GetCameraOffset() { return m_cameraOffset; }
 	Vector2Int GetMousePosition();
 	int GetMonitorRefreshRate();
 
