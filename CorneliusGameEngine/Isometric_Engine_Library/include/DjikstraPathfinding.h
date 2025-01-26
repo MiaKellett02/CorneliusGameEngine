@@ -32,7 +32,7 @@ namespace CorneliusEngine {
 
 	class DjikstraPathfinding {
 	public:
-		static std::vector<Vector2Int> FindPath(CorneliusEngine::DjikstraPosition* a_startPos, CorneliusEngine::DjikstraPosition* a_goalPos);
+		static std::vector<Vector2Int> FindPath(CorneliusEngine::DjikstraPosition* a_startPos, CorneliusEngine::DjikstraPosition* a_goalPos, std::vector<Vector2Int>& outCheckedPositions);
 
 		static void SortPositions(std::vector<CorneliusEngine::DjikstraPosition*>& a_positonsToSort);
 

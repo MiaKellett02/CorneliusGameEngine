@@ -7,11 +7,10 @@
 #include <algorithm>
 #include <assert.h>
 
-std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(CorneliusEngine::DjikstraPosition* a_startPos, CorneliusEngine::DjikstraPosition* a_goalPos)
+std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(CorneliusEngine::DjikstraPosition* a_startPos, CorneliusEngine::DjikstraPosition* a_goalPos, std::vector<Vector2Int>& outCheckedPositions)
 {
-	//Timer for debugging purposes.
-	Timer timer("Find Path Timer");
 
+	Timer("Find Path Timer");
 	std::vector<DjikstraPosition*> checkedPositions; //This list will store all the positions we've checked once we're done with them.
 
 	//Setup start pos and priority list.
@@ -23,6 +22,7 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 	DjikstraPosition* currentNode = a_startPos;
 	while (currentNode != nullptr)
 	{
+
 		//Go through all the connections to the current post and ensure they're in the priority list.
 		for (const auto& pair : currentNode->connections) {
 			//Get the values.
@@ -38,13 +38,17 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 
 			if (node->connectingNodeToStart != nullptr) {
 				//Make cost to start equal to the movement cost between the current node and this one PLUS the other nodes cost to start.
+				//int distanceToGoalSqr = (a_goalPos->position - node->position).SqrMagnitude();
 				float newCostToStart = node->connections[currentNode];
 				if (currentNode->totalCostToStart != node->START_COST) {
 					newCostToStart = newCostToStart + currentNode->totalCostToStart;
+					//newCostToStart = newCostToStart + (distanceToGoalSqr * distanceToGoalSqr * distanceToGoalSqr);
 				}
 				if (newCostToStart < node->totalCostToStart) {
 					//The new path to this node is shorter, update the shortest path marker.
 					node->connectingNodeToStart = currentNode;
+
+					//newCostToStart = newCostToStart + (distanceToGoalSqr * distanceToGoalSqr * distanceToGoalSqr);
 					node->totalCostToStart = newCostToStart;
 				}
 			}
@@ -54,14 +58,24 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 			}
 		}
 
-		if (currentNode != a_goalPos) {
-			//Current node has been checked, add it to checked list and remove from priority list.
-			checkedPositions.push_back(currentNode);
-			RemoveValue(currentNode, priorityList);
+		/*for (int i = 0; i < priorityList.size(); i++) {
+			DjikstraPosition* node = priorityList[i];
+			
+		}*/
 
+		if (priorityList.size() > 0) {
+			SortPositions(priorityList);
+		}
+
+		//Current node has been checked, add it to checked list and remove from priority list.
+		checkedPositions.push_back(currentNode);
+		RemoveValue(currentNode, priorityList);
+
+		//Update the current node
+		if (currentNode != a_goalPos) {
 			//Sort the priority list and then set the new current node to the one with the smallest cost to the start pos.
 			if (priorityList.size() > 0) {
-				SortPositions(priorityList);
+				//SortPositions(priorityList);
 				currentNode = priorityList[0];
 			}
 		}
@@ -100,6 +114,15 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 		CorneliusEngine::Log("Did not find valid route to goal node.");
 	}
 
+	//Output how many positions we checked.
+	outCheckedPositions.clear();
+	for (int i = 0; i < checkedPositions.size(); i++) {
+		outCheckedPositions.push_back(checkedPositions[i]->position);
+	}
+	std::string positionsCheckedString = std::to_string(checkedPositions.size()) + " positions checked.";
+	CorneliusEngine::Log(positionsCheckedString);
+
+	//Return.
 	return pathToGoal;
 }
 
@@ -113,6 +136,7 @@ void CorneliusEngine::DjikstraPathfinding::SortPositions(std::vector<CorneliusEn
 				//Make the swap.
 				a_positonsToSort[j] = posTwo;
 				a_positonsToSort[j + 1] = posOne;
+				int a = 0;
 			}
 		}
 	}

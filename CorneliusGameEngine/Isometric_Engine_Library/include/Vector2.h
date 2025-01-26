@@ -108,6 +108,10 @@ struct Vector2Int {
 		return x * x + y * y;
 	}
 
+	float SqrMagnitudeFloat() {
+		return (float)(x * x + y * y);
+	}
+
 	//Operator overrides.
 	Vector2Int operator*(int multiplier) const {
 		return Vector2Int(x * multiplier, y * multiplier);

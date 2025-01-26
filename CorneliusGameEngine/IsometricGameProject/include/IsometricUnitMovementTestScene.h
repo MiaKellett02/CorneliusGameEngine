@@ -3,6 +3,7 @@
 //Project includes.
 #include "Scene.h"
 #include "GameGrid.h"
+#include "DjikstraPathfinding.h"
 
 //Library includes.
 #include <string>
@@ -35,4 +36,13 @@ private:
 	Vector2Int selectedPosTwo = UNSELECTED_VALUE;
 
 	std::vector<Vector2Int> calculatedPath;
+
+	std::vector<CorneliusEngine::DjikstraPosition> m_navmesh;
+	std::vector<Vector2Int> m_checkedPositions;
+	bool m_navmeshReset = false;
+
+	//Private functions.
+	void DoPathfinding();
+	void ResetNavmesh();
+	void SetupNavmesh();
 };

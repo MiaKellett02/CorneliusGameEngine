@@ -26,8 +26,9 @@ public:
 		auto duration = end - start;
 		double ms = duration * 0.001;
 
-		std::string output = timerName + " took " + std::to_string(ms) + "ms";
-		CorneliusEngine::Log(output);
+		std::string output = "\n-------------------\n" + timerName + " took " + std::to_string(ms) + "ms\n-------------------\n";
+		//CorneliusEngine::Log(output);
+		std::cout << output << std::endl;
 	}
 
 private:
