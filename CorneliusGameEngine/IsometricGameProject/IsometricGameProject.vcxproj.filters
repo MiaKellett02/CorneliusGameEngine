@@ -24,10 +24,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\IsometricUnitMovementTestScene.cpp">
-      <Filter>Source Files\GameScenesSource</Filter>
-    </ClCompile>
     <ClCompile Include="source\GameGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\IsometricUnitMovementTestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

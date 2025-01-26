@@ -62,6 +62,22 @@ public:
 		return m_tileTypes[a_index];
 	}
 
+	bool IsValidPosition(Vector2Int& a_checkPosition) {
+		if (a_checkPosition.GetX() >= 0 &&
+			a_checkPosition.GetX() < GetWidth() &&
+			a_checkPosition.GetY() >= 0 &&
+			a_checkPosition.GetY() < GetHeight()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	Tile& GetTile(Vector2Int a_pos) {
+		int tileAccessIndex = a_pos.GetX() + a_pos.GetY() * this->GetWidth();
+		return this->GetTilemapList()[tileAccessIndex];
+	}
+
 	int GetWidth() {
 		return m_width;
 	}

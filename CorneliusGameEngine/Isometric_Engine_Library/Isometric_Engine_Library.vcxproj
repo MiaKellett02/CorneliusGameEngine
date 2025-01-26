@@ -196,17 +196,20 @@
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Colour.h" />
     <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\DjikstraPathfinding.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\IsometricTilemap.h" />
     <ClInclude Include="include\Logging.h" />
     <ClInclude Include="include\Renderer.h" />
     <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\Timer.h" />
     <ClInclude Include="include\Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\Component.cpp" />
+    <ClCompile Include="source\DjikstraPathfinding.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\InputHandler.cpp" />
     <ClCompile Include="source\Renderer.cpp" />

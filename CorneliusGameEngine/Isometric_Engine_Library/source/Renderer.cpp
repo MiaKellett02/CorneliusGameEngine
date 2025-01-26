@@ -251,13 +251,6 @@ Vector2Int Renderer::GetIsometricGridPosFromScreenCoords(const Vector2Int& a_scr
 	return Vector2Int(isoX, isoY);
 }
 
-Vector2Int Renderer::GetMousePosition()
-{
-	int x, y;
-	Uint32 buttons = SDL_GetMouseState(&x, &y);
-	return Vector2Int(x, y);
-}
-
 int Renderer::GetMonitorRefreshRate()
 {
 	SDL_DisplayMode displayMode;

@@ -27,4 +27,12 @@ public:
 
 private:
 	GameGrid m_gameGrid;
+
+
+	const Vector2Int UNSELECTED_VALUE = Vector2Int(-1, -1);
+
+	Vector2Int selectedPosOne = UNSELECTED_VALUE;
+	Vector2Int selectedPosTwo = UNSELECTED_VALUE;
+
+	std::vector<Vector2Int> calculatedPath;
 };
