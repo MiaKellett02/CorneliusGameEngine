@@ -3,7 +3,7 @@
 //Project includes.
 #include "Scene.h"
 #include "GameGrid.h"
-#include "DjikstraPathfinding.h"
+#include "AStarPathfinding.h"
 
 //Library includes.
 #include <string>
@@ -37,7 +37,7 @@ private:
 
 	std::vector<Vector2Int> calculatedPath;
 
-	std::vector<CorneliusEngine::DjikstraPosition> m_navmesh;
+	std::vector<CorneliusEngine::AStarPosition> m_navmesh;
 	std::vector<Vector2Int> m_checkedPositions;
 	bool m_navmeshReset = false;
 

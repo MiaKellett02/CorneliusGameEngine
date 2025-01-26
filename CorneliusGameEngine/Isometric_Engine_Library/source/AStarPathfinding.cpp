@@ -1,5 +1,5 @@
 //Project includes.
-#include "DjikstraPathfinding.h"
+#include "AStarPathfinding.h"
 #include "Logging.h"
 #include "Timer.h"
 
@@ -7,26 +7,27 @@
 #include <algorithm>
 #include <assert.h>
 
-std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(CorneliusEngine::DjikstraPosition* a_startPos, CorneliusEngine::DjikstraPosition* a_goalPos, std::vector<Vector2Int>& outCheckedPositions)
+std::vector<Vector2Int> CorneliusEngine::AStarPathfinding::FindPath(CorneliusEngine::AStarPosition* a_startPos, CorneliusEngine::AStarPosition* a_goalPos, std::vector<Vector2Int>& outCheckedPositions)
 {
 
 	Timer("Find Path Timer");
-	std::vector<DjikstraPosition*> checkedPositions; //This list will store all the positions we've checked once we're done with them.
+	std::vector<AStarPosition*> checkedPositions; //This list will store all the positions we've checked once we're done with them.
 
 	//Setup start pos and priority list.
 	a_startPos->totalCostToStart = 0;
-	std::vector<DjikstraPosition*> priorityList;
+	std::vector<AStarPosition*> priorityList;
 	priorityList.push_back(a_startPos);
 
 	//Keep going till path is found to the start pos.
-	DjikstraPosition* currentNode = a_startPos;
+	AStarPosition* currentNode = a_startPos;
+	int distanceToGoalCurrent = (a_goalPos->position - currentNode->position).SqrMagnitude();
 	while (currentNode != nullptr)
 	{
 
 		//Go through all the connections to the current post and ensure they're in the priority list.
 		for (const auto& pair : currentNode->connections) {
 			//Get the values.
-			DjikstraPosition* node = pair.first;
+			AStarPosition* node = pair.first;
 			float movementCost = pair.second;
 
 			// If connection hasn't been added to the priority list yet, then add it.
@@ -36,25 +37,24 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 				priorityList.push_back(node);
 			}
 
+			float newCostToStart = node->connections[currentNode] + distanceToGoalCurrent * distanceToGoalCurrent;
+			int distanceToGoalSqr = (a_goalPos->position - node->position).SqrMagnitude();
+			distanceToGoalSqr = distanceToGoalSqr * distanceToGoalSqr;
 			if (node->connectingNodeToStart != nullptr) {
 				//Make cost to start equal to the movement cost between the current node and this one PLUS the other nodes cost to start.
-				//int distanceToGoalSqr = (a_goalPos->position - node->position).SqrMagnitude();
-				float newCostToStart = node->connections[currentNode];
 				if (currentNode->totalCostToStart != node->START_COST) {
 					newCostToStart = newCostToStart + currentNode->totalCostToStart;
-					//newCostToStart = newCostToStart + (distanceToGoalSqr * distanceToGoalSqr * distanceToGoalSqr);
+					newCostToStart = newCostToStart + distanceToGoalSqr;
 				}
 				if (newCostToStart < node->totalCostToStart) {
 					//The new path to this node is shorter, update the shortest path marker.
 					node->connectingNodeToStart = currentNode;
-
-					//newCostToStart = newCostToStart + (distanceToGoalSqr * distanceToGoalSqr * distanceToGoalSqr);
 					node->totalCostToStart = newCostToStart;
 				}
 			}
 			else {
 				node->connectingNodeToStart = currentNode;
-				node->totalCostToStart = node->connections[currentNode] + currentNode->totalCostToStart;
+				node->totalCostToStart = newCostToStart + currentNode->totalCostToStart + distanceToGoalSqr;
 			}
 		}
 
@@ -77,6 +77,7 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 			if (priorityList.size() > 0) {
 				//SortPositions(priorityList);
 				currentNode = priorityList[0];
+				distanceToGoalCurrent = (a_goalPos->position - currentNode->position).SqrMagnitude();
 			}
 		}
 		else {
@@ -87,7 +88,7 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 
 	//Construct the path. 
 	std::vector<Vector2Int> pathToGoal;
-	DjikstraPosition* pathNode = a_goalPos;
+	AStarPosition* pathNode = a_goalPos;
 	while (pathNode != nullptr) {
 		pathToGoal.push_back(pathNode->position);
 
@@ -126,12 +127,12 @@ std::vector<Vector2Int> CorneliusEngine::DjikstraPathfinding::FindPath(Cornelius
 	return pathToGoal;
 }
 
-void CorneliusEngine::DjikstraPathfinding::SortPositions(std::vector<CorneliusEngine::DjikstraPosition*>& a_positonsToSort)
+void CorneliusEngine::AStarPathfinding::SortPositions(std::vector<CorneliusEngine::AStarPosition*>& a_positonsToSort)
 {
 	for (int i = 0; i < a_positonsToSort.size(); i++) {
 		for (int j = 0; j < a_positonsToSort.size() - 1; j++) {
-			DjikstraPosition* posOne = a_positonsToSort[j];
-			DjikstraPosition* posTwo = a_positonsToSort[j + 1];
+			AStarPosition* posOne = a_positonsToSort[j];
+			AStarPosition* posTwo = a_positonsToSort[j + 1];
 			if (posOne->totalCostToStart > posTwo->totalCostToStart) {
 				//Make the swap.
 				a_positonsToSort[j] = posTwo;
@@ -142,7 +143,7 @@ void CorneliusEngine::DjikstraPathfinding::SortPositions(std::vector<CorneliusEn
 	}
 }
 
-bool CorneliusEngine::DjikstraPathfinding::ListHasValue(DjikstraPosition* a_value, std::vector<DjikstraPosition*>& a_list)
+bool CorneliusEngine::AStarPathfinding::ListHasValue(AStarPosition* a_value, std::vector<AStarPosition*>& a_list)
 {
 	for (int i = 0; i < a_list.size(); i++) {
 		if (a_list[i] == a_value) {
@@ -154,7 +155,7 @@ bool CorneliusEngine::DjikstraPathfinding::ListHasValue(DjikstraPosition* a_valu
 	return false;
 }
 
-void CorneliusEngine::DjikstraPathfinding::RemoveValue(DjikstraPosition* a_value, std::vector<DjikstraPosition*>& a_list)
+void CorneliusEngine::AStarPathfinding::RemoveValue(AStarPosition* a_value, std::vector<AStarPosition*>& a_list)
 {
 	assert(a_value != nullptr);
 
@@ -163,7 +164,7 @@ void CorneliusEngine::DjikstraPathfinding::RemoveValue(DjikstraPosition* a_value
 
 }
 
-void CorneliusEngine::DjikstraPosition::MakeConnection(DjikstraPosition* a_newConnection, float a_movementCostMultiplier)
+void CorneliusEngine::AStarPosition::MakeConnection(AStarPosition* a_newConnection, float a_movementCostMultiplier)
 {
 	//Check if the connection is already made, if not then make it.
 	if (!connections.contains(a_newConnection)) {
@@ -175,7 +176,7 @@ void CorneliusEngine::DjikstraPosition::MakeConnection(DjikstraPosition* a_newCo
 	//a_newConnection->MakeConnection(this, a_movementCostMultiplier);
 }
 
-float CorneliusEngine::DjikstraPosition::CalculateMovementCost(DjikstraPosition* a_other, float a_movementCostMultiplier)
+float CorneliusEngine::AStarPosition::CalculateMovementCost(AStarPosition* a_other, float a_movementCostMultiplier)
 {
 	float distance = (a_other->position - this->position).MagnitudeFloat();
 

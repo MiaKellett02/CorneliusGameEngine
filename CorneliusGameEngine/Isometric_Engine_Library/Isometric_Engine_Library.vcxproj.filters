@@ -19,7 +19,7 @@
     <ClCompile Include="source\InputHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\DjikstraPathfinding.cpp">
+    <ClCompile Include="source\AStarPathfinding.cpp">
       <Filter>Source Files\PathfindingSource</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,7 +51,7 @@
     <ClInclude Include="include\Colour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\DjikstraPathfinding.h">
+    <ClInclude Include="include\AStarPathfinding.h">
       <Filter>Header Files\PathfindingInclude</Filter>
     </ClInclude>
     <ClInclude Include="include\Logging.h">

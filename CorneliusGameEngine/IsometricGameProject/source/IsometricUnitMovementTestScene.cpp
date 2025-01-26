@@ -1,7 +1,7 @@
 #include "IsometricUnitMovementTestScene.h"
 #include "Logging.h"
 #include "InputHandler.h"
-#include "DjikstraPathfinding.h"
+#include "AStarPathfinding.h"
 #include "Timer.h"
 
 IsometricUnitMovementTestScene::~IsometricUnitMovementTestScene()
@@ -97,8 +97,8 @@ void IsometricUnitMovementTestScene::DoPathfinding()
 	Colour blue(0, 0, 255);
 
 	//Calculate path.
-	CorneliusEngine::DjikstraPosition* startPos = nullptr;
-	CorneliusEngine::DjikstraPosition* goalPos = nullptr;
+	CorneliusEngine::AStarPosition* startPos = nullptr;
+	CorneliusEngine::AStarPosition* goalPos = nullptr;
 	for (int i = 0; i < m_navmesh.size(); i++) {
 		if (m_navmesh[i].position == selectedPosOne) {
 			startPos = &m_navmesh[i];
@@ -107,7 +107,7 @@ void IsometricUnitMovementTestScene::DoPathfinding()
 			goalPos = &m_navmesh[i];
 		}
 	}
-	calculatedPath = CorneliusEngine::DjikstraPathfinding::FindPath(startPos, goalPos, m_checkedPositions);
+	calculatedPath = CorneliusEngine::AStarPathfinding::FindPath(startPos, goalPos, m_checkedPositions);
 	{
 		for (int i = 0; i < m_checkedPositions.size(); i++) {
 			m_gameGrid.GetEnvironmentTilemap()->GetTile(m_checkedPositions[i]).tint = blue;
@@ -138,7 +138,7 @@ void IsometricUnitMovementTestScene::SetupNavmesh()
 	for (int y = 0; y < m_gameGrid.GetEnvironmentTilemap()->GetHeight(); y++) {
 		for (int x = 0; x < m_gameGrid.GetEnvironmentTilemap()->GetWidth(); x++) {
 			Vector2Int currentPos(x, y);
-			CorneliusEngine::DjikstraPosition newPos;
+			CorneliusEngine::AStarPosition newPos;
 			newPos.position = currentPos;
 			m_navmesh.push_back(newPos);
 		}

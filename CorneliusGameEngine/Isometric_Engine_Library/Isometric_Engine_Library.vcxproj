@@ -196,7 +196,7 @@
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Colour.h" />
     <ClInclude Include="include\Component.h" />
-    <ClInclude Include="include\DjikstraPathfinding.h" />
+    <ClInclude Include="include\AStarPathfinding.h" />
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\IsometricTilemap.h" />
@@ -209,7 +209,7 @@
   <ItemGroup>
     <ClCompile Include="source\Application.cpp" />
     <ClCompile Include="source\Component.cpp" />
-    <ClCompile Include="source\DjikstraPathfinding.cpp" />
+    <ClCompile Include="source\AStarPathfinding.cpp" />
     <ClCompile Include="source\Entity.cpp" />
     <ClCompile Include="source\InputHandler.cpp" />
     <ClCompile Include="source\Renderer.cpp" />
